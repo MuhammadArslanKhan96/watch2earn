@@ -14,11 +14,11 @@ import You from "./Data/youtubedata";
 
 const Youtube = () => {
   return (
-    <section className="my-5  px-20">
-      <div className=" flex  justify-center gap-x-10  ">
+    <section className="my-5 xs:px-10 lg:px-20">
+      <div className=" flex  justify-center xs:flex-col lg:flex-row lg:gap-x-10 xs:gap-y-5 ">
         {You.map((item, idx) => (
           <>
-            <div className="flex flex-col justify-center  py-2  bg-white  text-[#4C4C4C]   rounded-[5px]">
+            <div className="flex flex-col justify-center xs:py-4  lg:py-2  bg-white  text-[#4C4C4C]   rounded-[5px]">
               <div className="flex justify-center">
                 <Image
                   src={item.img}
@@ -29,11 +29,11 @@ const Youtube = () => {
                 />
               </div>
               <div className="flex justify-center items-center flex-col text-center mt-[24px]  pb-[10px]">
-                <div className="text-[20px] text-[#707070] font-bold text-center ">
+                <div className="xs:text-[14px] lg:text-[20px] text-[#707070] font-bold text-center ">
                   {item.Name}
                 </div>
               </div>
-              <div className="flex text-[18px] justify-center text-center px-[20px] w-[300px] pb-[50px]   ">
+              <div className="flex xs:text-[12px] lg:text-[18px] justify-center text-center px-[20px] w-[300px] xs:pb-[20px] lg:pb-[50px]   ">
                 {item.Desc}
               </div>
             </div>

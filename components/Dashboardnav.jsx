@@ -7,7 +7,7 @@ import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import { FiPhoneCall } from "react-icons/fi";
 import { useRouter } from "next/router";
 
-const Navbar = () => {
+const Dashboardnav = () => {
   const { status } = useSession();
   const [nav, setNav] = useState(false);
   const [color, setColor] = useState("transparent");
@@ -28,66 +28,28 @@ const Navbar = () => {
       }
     };
 
-    window.addEventListener("scroll", changeColor);
+    // window.addEventListener("scroll", changeColor);
   }, []);
 
-  if (router.pathname === "/Userdashboard") return;
+  // if (router.pathname === "/Userdashboard" || "/Youtubeservices") return;
   return (
     <div
       style={{ backgroundColor: `${color}` }}
-      className="sticky top-0 w-full z-10 ease-in duration-300"
+      className="fixed left-0 top-0 w-full z-10 ease-in duration-300"
     >
-      <div className="w-auto mx-8 lg:px-28 flex justify-between items-center py-4 text-white">
-        <div className="flex">
-          <div>
-            <Link href="/">
-              <Image
-                src={logo}
-                className="cursor-pointer"
-                alt="logo"
-                width={60}
-                height={55}
-              />
-            </Link>
-          </div>
-          {/*  */}
-          <div
-            className="px-1 text-[32px] text-transparent bg-clip-text bg-gradient-to-r from-[#c132d1] to-[#0E9AC5]
-         font-sans font-bold"
-          >
-            Watch2earn
-          </div>
-        </div>
-        <div className="flex">
+      <div className="w-auto mx-8 bg-[black] lg:px-28 flex justify-center items-center py-2 text-white">
+        <div className="flex ">
           <ul style={{ color: `${textColor}` }} className="hidden lg:flex">
-            {/* <li className="p-4 text-[#0D1296] font-bold">
-              <Link href="/AI">Speech</Link>
-            </li> */}
-            <li
-              className={
-                "p-4 text-[#0D1296] font-bold "
-                // (status === "authenticated"
-                //   ? "cursor-pointer"
-                //   : "cursor-not-allowed")
-              }
-            >
-              <Link
-                // style={{
-                //   cursor:
-                //     status === "authenticated" ? "pointer" : "not-allowed",
-                // }}
-                href={
-                  status === "authenticated"
-                    ? "/Videodashboard"
-                    : "/Videodashboard"
-                }
-              >
-                Video Dashboard
-              </Link>
+            <li className="py-4 px-9 text-[#ffffffec] font-bold text-[24px]">
+              <Link href="#">Profile</Link>
             </li>
 
-            <li className="p-4 text-[#0D1296] font-bold">
-              <Link href="/Userdashboard">User</Link>
+            <li className="py-4 px-9 text-[#ffffffec] font-bold text-[24px]">
+              <Link href="#">Analytics</Link>
+            </li>
+
+            <li className="py-4 px-9 text-[#ffffffec] font-bold text-[24px]">
+              <Link href="#">Spending</Link>
             </li>
           </ul>
         </div>
@@ -113,21 +75,20 @@ const Navbar = () => {
               onClick={handleNav}
               className="p-4 text-4xl text-[#0D1296] hover:text-gray-500"
             >
-              <Link
-                href={
-                  status === "authenticated"
-                    ? "/Videodashboard"
-                    : "/Videodashboard"
-                }
-              >
-                Video Dashboard
-              </Link>
+              <Link href="/#work">Profile</Link>
             </li>
             <li
               onClick={handleNav}
               className="p-4 text-4xl text-[#0D1296] hover:text-gray-500"
             >
-              <Link href="/Userdashboard">User</Link>
+              <Link href="/#services">Analytics</Link>
+            </li>
+
+            <li
+              onClick={handleNav}
+              className="p-4 text-4xl text-[#0D1296] hover:text-gray-500"
+            >
+              <Link href="/#contact">Spending</Link>
             </li>
           </ul>
         </div>
@@ -136,4 +97,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Dashboardnav;

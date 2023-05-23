@@ -1,36 +1,67 @@
 import Image from 'next/image'
 import React from 'react'
+import Sidebar from '../components/Sidebar'
+import { Container } from 'reactstrap'
+import Chart from '../components/Userchart'
 
 const Userprofile = () => {
     return (
         <>
-            <div className='mt-[200px] flex justify-center text-center'>
-                <div
-                    className="block rounded-lg bg-white shadow-lg dark:bg-neutral-700 dark:shadow-black/30">
-                    <div className="h-28 overflow-hidden rounded-t-lg bg-[#6d5b98]"></div>
-                    <div
-                        className="mx-auto -mt-12 w-24 overflow-hidden rounded-full border-2 border-white bg-white dark:border-neutral-800 dark:bg-neutral-800">
-                        <Image
-                            src="https://tecdn.b-cdn.net/img/Photos/Avatars/img%20(9).webp" width={100} height={100} alt='' />
-                    </div>
-                    <div className="p-6">
-                        <h4 className="mb-4 text-2xl font-semibold text-white">John Smith</h4>
-                        <hr />
-                        <p className="mt-4 text-white">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="currentColor"
-                                className="inline-block h-7 w-7 pr-2"
-                                viewBox="0 0 24 24">
-                                <path
-                                    d="M13 14.725c0-5.141 3.892-10.519 10-11.725l.984 2.126c-2.215.835-4.163 3.742-4.38 5.746 2.491.392 4.396 2.547 4.396 5.149 0 3.182-2.584 4.979-5.199 4.979-3.015 0-5.801-2.305-5.801-6.275zm-13 0c0-5.141 3.892-10.519 10-11.725l.984 2.126c-2.215.835-4.163 3.742-4.38 5.746 2.491.392 4.396 2.547 4.396 5.149 0 3.182-2.584 4.979-5.199 4.979-3.015 0-5.801-2.305-5.801-6.275z" />
-                            </svg>
-                            Delectus impedit saepe officiis ab aliquam repellat rem unde
-                            ducimus.
-                        </p>
-                    </div>
+            <Container className="top-0 ">
+                <div className='flex'>
+                    <Sidebar />
+                    <Container className='bg-[#f4f1f1] px-[40px] py-[20px]'>
+                        <Container className='flex gap-x-[30px]'>
+                            <div className='flex flex-col'>
+                                <div
+                                    className="block rounded-lg  shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] ">
+
+                                    <Image
+                                        className="rounded-t-lg"
+                                        src="/images/cardbg.jpg"
+                                        width={325}
+                                        height={163}
+                                        alt="" />
+
+
+                                </div>
+                                <div className='flex flex-col text-center rounded-lg bg-[white] p-[24px] '>
+
+                                    <div className='flex justify-between px-[15px] py-[16px]'>
+                                        <div className='flex flex-col'>
+                                            <p className='text-[18px] text-[#525F7F] font-bold'>22</p>
+                                            <p className='text-[14px] text-[#ADB5BD] font-sarif'>Friends</p>
+                                        </div>
+                                        <div className='flex flex-col'>
+                                            <p className='text-[18px] text-[#525F7F] font-bold'>10</p>
+                                            <p className='text-[14px] text-[#ADB5BD] font-sarif'>Photos</p>
+                                        </div>
+                                        <div className='flex flex-col'>
+                                            <p className='text-[18px] text-[#525F7F] font-bold'>89</p>
+                                            <p className='text-[14px] text-[#ADB5BD] font-sarif'>Comments</p>
+                                        </div>
+                                    </div>
+                                    <div className='flex justify-center gap-x-2 py-[8px]  px-[15px]'>
+                                        <p className=' text-[17px] text-[#32325D] font-bold'> Jessica Jones, </p>
+                                        <p className='text-[17px] text-[#ADB5BD]'>27</p>
+                                    </div>
+                                    <div className='flex justify-center gap-x-2 py-[8px]  px-[15px]'>
+                                        <p className='text-[13px] text-[#ADB5BD]'>Bicharist, Romaina</p>
+                                    </div>
+                                    <div className='flex flex-col justify-center gap-x-2 py-[24px]  px-[15px]'>
+                                        <h5 className=' text-[13px] font-bold text-[#32325D] pb-[8px]'> Solution Manager-Creative Tim Officer </h5>
+                                        <h5 className=' text-[13px] font-bold text-[#32325D]'> University of Computer Science </h5>
+                                    </div>
+                                </div>
+
+                            </div>
+                            {/* <div>
+                                <Chart />
+                            </div> */}
+                        </Container>
+                    </Container>
                 </div>
-            </div>
+            </Container>
         </>
     )
 }
