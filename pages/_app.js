@@ -165,7 +165,6 @@ function MyApp({ Component, pageProps }) {
       getPlaylists(JSON.parse(user.channels).items[0].id, JSON.parse(user.tokens).access_token)
     }
 
-    // signOut()
     // eslint-disable-next-line
   }, [router, user]);
 
