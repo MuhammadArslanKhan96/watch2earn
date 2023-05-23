@@ -25,7 +25,7 @@ function MyApp({ Component, pageProps }) {
 
   useEffect(() => {
     if (
-      localStorage.getItem("user").toString() !== "null"
+      localStorage.getItem("user") !== null
     ) {
       getUser();
     }

@@ -20,10 +20,7 @@ const Signup = () => {
   };
 
   React.useEffect(() => {
-    if (
-      status === "authenticated" &&
-      localStorage.getItem("user").toString() === "null"
-    ) {
+    if (status === "authenticated" && localStorage.getItem("user") === null) {
       getUser();
     }
   }, [status]);
