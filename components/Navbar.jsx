@@ -55,23 +55,14 @@ const Navbar = () => {
             className="px-1 text-[32px] text-transparent bg-clip-text bg-gradient-to-r from-[#c132d1] to-[#0E9AC5]
          font-sans font-bold"
           >
-            Cubicus
+            Watch2earn
           </div>
         </div>
         <div className="flex">
           <ul style={{ color: `${textColor}` }} className="hidden lg:flex">
-            <li className="p-4 text-[#0D1296] font-bold">
-              <Link href="/#projects ">Work</Link>
-            </li>
-            <li className="p-4 text-[#0D1296] font-bold">
-              <Link href="/#services">Services</Link>
-            </li>
             {/* <li className="p-4 text-[#0D1296] font-bold">
               <Link href="/AI">Speech</Link>
             </li> */}
-            <li className="p-4 text-[#0D1296] font-bold">
-              <Link href="/Youtubeservices">Youtube services</Link>
-            </li>
             <li
               className={
                 "p-4 text-[#0D1296] font-bold "
