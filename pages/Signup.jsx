@@ -23,6 +23,7 @@ const Signup = () => {
     if (status === "authenticated" && localStorage.getItem("user") === null) {
       getUser();
     }
+    // eslint-disable-next-line
   }, [status]);
 
   return (

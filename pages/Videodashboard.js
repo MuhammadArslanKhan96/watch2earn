@@ -32,6 +32,7 @@ const Videodashboard = () => {
     }, [user])
     useEffect(() => {
         randomConsoleLog()
+        // eslint-disable-next-line
     }, []);
 
 
@@ -80,6 +81,7 @@ const Videodashboard = () => {
 
 
         }
+        // eslint-disable-next-line
     }, [file])
 
     return (
@@ -272,7 +274,7 @@ const Videodashboard = () => {
                                     {videos.length ? <>{videos.slice(0, 5).map((video, index) => (
                                         <>
                                             {/* {createElement(video.player.embedHtml)} */}
-                                            <iframe width="480" height="270" src={`https://www.youtube.com/embed/${video.id}`} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                            <iframe width="480" height="270" src={`https://www.youtube.com/embed/${video.id}`} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                                         </>
                                     ))}</> : null}
                                 </div>

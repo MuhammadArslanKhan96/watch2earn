@@ -166,7 +166,7 @@ function MyApp({ Component, pageProps }) {
     }
 
     // signOut()
-
+    // eslint-disable-next-line
   }, [router, user]);
 
   return (
