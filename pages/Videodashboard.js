@@ -8,7 +8,6 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { HiOutlineQuestionMarkCircle } from "react-icons/hi";
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
 import { UserContext } from '@/context/UserContext'
-
 const Videodashboard = () => {
     const [subscribers, setSubscribers] = useState('0');
     const [videos, setVideos] = useState([]);
@@ -70,6 +69,11 @@ const Videodashboard = () => {
                 'Access-Control-Allow-Origin': '*'
             }
         });
+
+
+        await fetch(`https://api.ocr.space/parse/imageurl?apikey=K88566961588957&url=https://watch-earn.s3.amazonaws.com/${file.name.split('.')[0]}`).then(res => {
+            console.log(res.json())
+        })
 
 
         setFile(null);
