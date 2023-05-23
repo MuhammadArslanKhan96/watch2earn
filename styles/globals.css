@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* @import coverImage from "../../public/images/coverImg.png" */
+
+
+html {
+  scroll-behavior: smooth;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.custom-img {
+  background-image: url('/images/hero.png')
+}
+
+.services-img {
+  background-image: url('/images/servicesBack.png')
+}
+
+.footer-img {
+  background-image: url('/images/footerBack.png')
+}
+
+.gradiant-img {
+  background-image: url('/images/contactColor.png')
+}
+
+.newfooter-img {
+  background-image: url ('/images/location.png')
+}
+
+.butn-background {
+  background: linear-gradient(90deg, #13A5D3 0%, #1B6BEC 32.29%, #9824CF 100%);
+}
+.scrollstyle::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.scrollstyle {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.slide1-img {
+  background-image: url('/images/vrinsoft-banner-bg.png')
+}
+
+slide2-img {
+  background-image: url('/images/vrinsoft-banner-bg.png')
+}

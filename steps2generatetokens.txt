@@ -1,0 +1,28 @@
+Step 1 generate code with your scopes
+
+
+https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/youtube.readonly&access_type=offline&include_granted_scopes=true&state=state_parameter_passthrough_value&redirect_uri=http://localhost:3000&response_type=code&client_id=515070853986-ruq2r9lpvkvo51ao2slg8o5e5s3v65ha.apps.googleusercontent.com
+
+
+Step 2 generate access token
+
+curl \
+--request POST \
+--data "code=4/0AbUR2VNKPMpe5SGxPm9ZO8uvmhzIJdFw7V5oyPZBEhuogyjExTBf8KxwwwogPQ73jbrWEQ&client_id=515070853986-ruq2r9lpvkvo51ao2slg8o5e5s3v65ha.apps.googleusercontent.com&client_secret=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&redirect_uri=http://localhost:3000&grant_type=authorization_code" \
+https://accounts.google.com/o/oauth2/token
+
+Step 3 Get any request from api with apikey and access token\
+
+
+ curl \
+ 'https://youtube.googleapis.com/youtube/v3/channels?part=brandingSettings%2CcontentDetails%2CcontentOwnerDetails%2Cid%2Clocalizations%2Csnippet%2Cstatistics%2Cstatus%2CtopicDetails&mine=true&key=AIzaSyDmH99AWnBnPzyLVaQBnEppDLkky8XfTI0' \
+ --header 'Authorization: Bearer ya29.a0AWY7CkmxjSqOwCuPz-1HYNSsnV4TUjDkG61viYY_LYmyj08mKw3kJyy1Zwz306mMf9FGDm7JHFrCOgQ7P5FAc68mgwKYVavB3FT2JN1OMvxps9YRVQm3y5hXJisFCay17th2ViMiQeW5ozp-GMgBz93HvUHYaCgYKAUkSARESFQG1tDrpr3PhLUXvMhYaIp3gneoDZQ0163' \
+ --header 'Accept: application/json' \
+ --compressed
+
+ Step 4 regenerate access token by refresh token
+
+   curl \
+--request POST \
+--data "client_id=515070853986-ruq2r9lpvkvo51ao2slg8o5e5s3v65ha.apps.googleusercontent.com&client_secret=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&refresh_token=1//03KE_1OpbrGZbCgYIARAAGAMSNwF-L9IrxnhmpEI97-sI2rkYO0ixpAnMExO3Un_udTclnz5m9DakrzMFca8iNhMzkN1QP_UdAVY&grant_type=refresh_token" \
+https://accounts.google.com/o/oauth2/token
