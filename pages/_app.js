@@ -123,13 +123,13 @@ function MyApp({ Component, pageProps }) {
     // }, 2000);
   }
   const getTokens = async () => {
-    const response = await fetch(`https://accounts.google.com/o/oauth2/token?code=${router?.query?.code}&client_id=${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}&client_secret=${process.env.NEXT_PUBLIC_GOOGLE_SECRET}&redirect_uri=http://localhost:3000&grant_type=authorization_code`, {
+    const response = await fetch(`https://accounts.google.com/o/oauth2/token?code=${router?.query?.code}&client_id=${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}&client_secret=${process.env.NEXT_PUBLIC_GOOGLE_SECRET}&redirect_uri=${process.env.NEXT_PUBLIC_URI}&grant_type=authorization_code`, {
       method: 'POST',
       body: JSON.stringify({
         code: router?.query?.code,
         client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
         client_secret: process.env.NEXT_PUBLIC_GOOGLE_SECRET,
-        redirect_uri: 'http://localhost:3000',
+        redirect_uri: process.env.NEXT_PUBLIC_URI,
         grant_type: 'authorization_code'
       })
     });
