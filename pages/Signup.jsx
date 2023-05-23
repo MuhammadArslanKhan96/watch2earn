@@ -14,15 +14,16 @@ const Signup = () => {
       body: JSON.stringify(data.user),
     }).then(async () => {
       router.replace(
-        `https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/youtube.readonly&access_type=offline&include_granted_scopes=true&state=state_parameter_passthrough_value&redirect_uri=http://localhost:3000&response_type=code&client_id=${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}`
+        `https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/youtube.readonly&access_type=offline&include_granted_scopes=true&state=state_parameter_passthrough_value&redirect_uri=${process.env.NEXT_PUBLIC_URI}&response_type=code&client_id=${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}`
       );
     });
   };
 
   React.useEffect(() => {
-    if (status === "authenticated" && localStorage.getItem("user") === null) {
+    if (status === "authenticated" && localStorage.getItem("user") !== null) {
       getUser();
     }
+    // eslint-disable-next-line
   }, [status]);
 
   return (
