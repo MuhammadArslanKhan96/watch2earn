@@ -37,7 +37,7 @@ const Dashboardnav = () => {
       style={{ backgroundColor: `${color}` }}
       className="fixed left-0 top-0 w-full z-10 ease-in duration-300"
     >
-      <div className="w-auto mx-8 bg-[black] lg:px-28 flex justify-center items-center py-2 text-white">
+      <div className="w-auto bg-[black] lg:px-28 flex justify-center items-center py-2 text-white">
         <div className="flex ">
           <ul style={{ color: `${textColor}` }} className="hidden lg:flex">
             <li className="py-4 px-9 text-[#ffffffec] font-bold text-[24px]">

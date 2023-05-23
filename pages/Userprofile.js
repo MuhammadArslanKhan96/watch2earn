@@ -55,9 +55,10 @@ const Userprofile = () => {
                                 </div>
 
                             </div>
-                            {/* <div>
-                                <Chart />
-                            </div> */}
+                            <Chart />
+                            <div>
+
+                            </div>
                         </Container>
                     </Container>
                 </div>
