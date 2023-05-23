@@ -89,23 +89,6 @@ const Navbar = () => {
             <li className="p-4 text-[#0D1296] font-bold">
               <Link href="/Userdashboard">User</Link>
             </li>
-            <li className="p-4 text-[#0D1296] font-bold">
-              <Link href="/#contact ">Contact</Link>
-            </li>
-            <li className="p-4 text-[#0D1296] font-bold">
-              <div className="flex items-center text-[#0D1296] cursor-pointer">
-                <div>
-                  <FiPhoneCall />
-                </div>
-                <div className="px-2">+1(254) 472-4279</div>
-              </div>
-            </li>
-
-            <Link href="https://calendly.com/m-arslan2201/call-with-cubicus?month=2023-03">
-              <button className="bg-[#0d1296] border rounded-[5px] text-white text-lg font-bold px-4 ">
-                Get a quote
-              </button>
-            </Link>
           </ul>
         </div>
 
@@ -130,28 +113,22 @@ const Navbar = () => {
               onClick={handleNav}
               className="p-4 text-4xl text-[#0D1296] hover:text-gray-500"
             >
-              <Link href="/#work">Work</Link>
+              <Link
+                href={
+                  status === "authenticated"
+                    ? "/Videodashboard"
+                    : "/Videodashboard"
+                }
+              >
+                Video Dashboard
+              </Link>
             </li>
             <li
               onClick={handleNav}
               className="p-4 text-4xl text-[#0D1296] hover:text-gray-500"
             >
-              <Link href="/#services">Services</Link>
+              <Link href="/Userdashboard">User</Link>
             </li>
-            {/* <li onClick={handleNav} className='p-4 text-4xl hover:text-gray-500'>
-              <Link href='/#testimonials'>Testimonials</Link>
-            </li> */}
-            <li
-              onClick={handleNav}
-              className="p-4 text-4xl text-[#0D1296] hover:text-gray-500"
-            >
-              <Link href="/#contact">Contact</Link>
-            </li>
-            <Link href="https://calendly.com/m-arslan2201/call-with-cubicus?month=2023-03">
-              <button className="bg-[#0D1296] text-[#fff]  text-lg font-bold px-4">
-                Get a quote
-              </button>
-            </Link>
           </ul>
         </div>
       </div>

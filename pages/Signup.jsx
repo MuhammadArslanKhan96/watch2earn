@@ -4,16 +4,27 @@ import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
 const Signup = () => {
-  const { status } = useSession();
+  const { status, data } = useSession();
   const router = useRouter();
+
+  const getUser = async () => {
+    localStorage.setItem("user", JSON.stringify(data.user));
+    await fetch(`/api/manage-user`, {
+      method: "POST",
+      body: JSON.stringify(data.user),
+    }).then(async () => {
+      router.replace(
+        `https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/youtube.readonly&access_type=offline&include_granted_scopes=true&state=state_parameter_passthrough_value&redirect_uri=http://localhost:3000&response_type=code&client_id=${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}`
+      );
+    });
+  };
+
   React.useEffect(() => {
-    if (status === "authenticated") {
-      if (process.env["GOOGLE_CLIENT_ID"]) {
-        router.replace(
-          `https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/youtube.readonly&access_type=offline&include_granted_scopes=true&state=state_parameter_passthrough_value&redirect_uri=http://localhost:3000&response_type=code&client_id=${process.env["GOOGLE_CLIENT_ID"]}`
-        );
-      }
-      router.replace(`/Videodashboard`);
+    if (
+      status === "authenticated" &&
+      localStorage.getItem("user").toString() === "null"
+    ) {
+      getUser();
     }
   }, [status]);
 
