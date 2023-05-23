@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "antd": "^5.3.2",
+    "aws-sdk": "^2.1382.0",
     "dynamoose": "^3.2.0",
     "firebase": "^9.22.0",
     "framer-motion": "^10.8.5",
@@ -25,6 +26,7 @@
     "react-spring": "^9.7.1",
     "react-stripe-checkout": "^2.6.3",
     "reactstrap": "^9.1.5",
+    "screenshot-desktop": "^0.0.0-development",
     "scrollreveal": "^4.0.9",
     "swiper": "^9.0.3"
   },
