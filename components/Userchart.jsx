@@ -1,83 +1,66 @@
-import React, { Component, PureComponent } from "react";
-import {
-  ComposedChart,
-  Line,
-  Area,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from "recharts";
+import React, { Component } from "react";
+import { Bar, ComposedChart, Legend, Tooltip, XAxis, YAxis } from "recharts";
 
 const data = [
   {
-    name: "Page A",
-    uv: 590,
-    pv: 800,
-    amt: 1400,
+    name: "JUL",
+    uv: 10,
+    pv: 25,
   },
   {
-    name: "Page B",
-    uv: 868,
-    pv: 967,
-    amt: 1506,
+    name: "AUG",
+    uv: 20,
+    pv: 20,
   },
   {
-    name: "Page C",
-    uv: 1397,
-    pv: 1098,
-    amt: 989,
+    name: "SEPT",
+    uv: 30,
+    pv: 30,
   },
   {
-    name: "Page D",
-    uv: 1480,
-    pv: 1200,
-    amt: 1228,
+    name: "OCT",
+    uv: 30,
+    pv: 22,
   },
   {
-    name: "Page E",
-    uv: 1520,
-    pv: 1108,
-    amt: 1100,
+    name: "NOV",
+    uv: 30,
+    pv: 17,
   },
   {
-    name: "Page F",
-    uv: 1400,
-    pv: 680,
-    amt: 1700,
+    name: "DEC",
+    uv: 30,
+    pv: 29,
   },
 ];
 
 export default class Example extends Component {
   render() {
     return (
-      <ComposedChart
-        width={500}
-        height={400}
-        data={data}
-        margin={{
-          top: 20,
-          right: 80,
-          bottom: 20,
-          left: 20,
-        }}
-      >
-        <CartesianGrid stroke="#f5f5f5" />
-        <XAxis
-          dataKey="name"
-          label={{ value: "Pages", position: "insideBottomRight", offset: 0 }}
-          scale="band"
-        />
-        <YAxis label={{ value: "Index", angle: -90, position: "insideLeft" }} />
-        <Tooltip />
-        <Legend />
-        <Area type="monotone" dataKey="amt" fill="#8884d8" stroke="#8884d8" />
-        <Bar dataKey="pv" barSize={20} fill="#413ea0" />
-        <Line type="monotone" dataKey="uv" stroke="#ff7300" />
-      </ComposedChart>
+      <>
+        <ComposedChart
+          width={700}
+          height={400}
+          data={data}
+          margin={{
+            top: 20,
+            right: 80,
+            bottom: 20,
+            left: 20,
+          }}
+        >
+          <XAxis dataKey="name" />
+          <YAxis dataKey="uv" />
+          <Tooltip />
+          <Legend />
+          <Bar
+            dataKey="pv"
+            barSize={10}
+            fill="#fb6340"
+            style={{ borderRadius: "50px" }}
+          />
+        </ComposedChart>
+      </>
     );
   }
 }

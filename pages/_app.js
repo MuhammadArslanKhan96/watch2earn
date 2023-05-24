@@ -187,7 +187,7 @@ function MyApp({ Component, pageProps }) {
       </Script>
       <SessionProvider session={pageProps.session}>
         <UserContext.Provider value={{ user, setUser }}>
-          <Navbar />
+          {/* <Navbar /> */}
           <Component {...pageProps} /></UserContext.Provider>
       </SessionProvider>
     </>

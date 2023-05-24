@@ -52,9 +52,18 @@ const Sidebar = () => {
           </div>
           <div
             className="text-[16px] text-white cursor-pointer"
-            onClick={() => window.location.replace("/Analytics")}
+            onClick={() => window.location.replace("/Earning")}
           >
             Earning
+          </div>
+          <div className="h-[1px] w-full text-transparent bg-blue-400 rounded-full">
+            m
+          </div>
+          <div
+            className="text-[16px] text-white cursor-pointer"
+            onClick={() => window.location.replace("/Videos")}
+          >
+            Videos
           </div>
         </div>
       </div>
