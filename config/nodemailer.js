@@ -3,7 +3,6 @@ import nodemailer from "nodemailer";
 const email = 'workcubicus@gmail.com';
 console.log({ email });
 const pass = 'ljelwabvzprnryqj';
-console.log({ pass });
 
 export const transporter = nodemailer.createTransport({
     service: "gmail",
