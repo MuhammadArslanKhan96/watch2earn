@@ -69,54 +69,82 @@ const Videos = () => {
                     </div>
 
                     <div className='grid grid-cols-4 p-[24px] gap-x-5 gap-y-5'>
-                        <div className='text-[12px]  flex-col  rounded-[8px] flex justify-center  bg-[#FFFFFF] 
-                                py-[20px]  '>
-                            <iframe width="100%" height="100%" src={"https://www.youtube.com/embed/" + (videos.length ? videos[0].id : 'pRbxlpvXw2s')} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
-                            <div className='flex flex-col text-black mt-2 px-[10px]'>
-                                <div className='text-[20px] font-bold '>Title</div>
-                                <div className='text-[16px] '>Description</div>
-                            </div>
-                        </div>
-                        <div className='text-[12px]  flex-col  rounded-[8px] flex justify-center  bg-[#FFFFFF] 
-                                py-[20px]  '>
-                            <iframe width="100%" height="100%" src={"https://www.youtube.com/embed/" + (videos.length ? videos[0].id : 'pRbxlpvXw2s')} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
-                            <div className='flex flex-col text-black mt-2 px-[10px]'>
-                                <div className='text-[20px] font-bold '>Title</div>
-                                <div className='text-[16px] '>Description</div>
-                            </div>
-                        </div>
-                        <div className='text-[12px]  flex-col  rounded-[8px] flex justify-center  bg-[#FFFFFF] 
-                                py-[20px]  '>
-                            <iframe width="100%" height="100%" src={"https://www.youtube.com/embed/" + (videos.length ? videos[0].id : 'pRbxlpvXw2s')} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
-                            <div className='flex flex-col text-black mt-2 px-[10px]'>
-                                <div className='text-[20px] font-bold '>Title</div>
-                                <div className='text-[16px] '>Description</div>
-                            </div>
-                        </div>
-                        <div className='text-[12px]  flex-col  rounded-[8px] flex justify-center  bg-[#FFFFFF] 
-                                py-[20px]  '>
-                            <iframe width="100%" height="100%" src={"https://www.youtube.com/embed/" + (videos.length ? videos[0].id : 'pRbxlpvXw2s')} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
-                            <div className='flex flex-col text-black mt-2 px-[10px]'>
-                                <div className='text-[20px] font-bold '>Title</div>
-                                <div className='text-[16px] '>Description</div>
-                            </div>
-                        </div>
-                        <div className='text-[12px]  flex-col  rounded-[8px] flex justify-center  bg-[#FFFFFF] 
-                                py-[20px]  '>
-                            <iframe width="100%" height="100%" src={"https://www.youtube.com/embed/" + (videos.length ? videos[0].id : 'pRbxlpvXw2s')} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
-                            <div className='flex flex-col text-black px-[10px]'>
-                                <div className='text-[20px] font-bold '>Title</div>
-                                <div className='text-[16px] '>Description</div>
-                            </div>
-                        </div>
-                        <div className='text-[12px]  flex-col  rounded-[8px] flex justify-center  bg-[#FFFFFF] 
-                                py-[20px]  '>
-                            <iframe width="100%" height="100%" src={"https://www.youtube.com/embed/" + (videos.length ? videos[0].id : 'pRbxlpvXw2s')} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
-                            <div className='flex flex-col text-black mt-2 px-[10px]'>
-                                <div className='text-[20px] font-bold '>Title</div>
-                                <div className='text-[16px] '>Description</div>
-                            </div>
-                        </div>
+
+                        <table className="w-[60vw] text-sm text-left text-gray-500 dark:text-gray-400">
+                            <thead className="text-xs text-gray-700 uppercase bg-white dark:bg-white dark:text-gray-400">
+                                <tr>
+                                    <th scope="col" className="px-6 py-3">
+                                        Video Title
+                                    </th>
+                                    <th scope="col" className="px-6 py-3">
+                                        Views
+                                    </th>
+                                    <th scope="col" className="px-6 py-3">
+                                        Comments
+                                    </th>
+                                    <th scope="col" className="px-6 py-3">
+                                        Likes
+                                    </th>
+                                    <th scope="col" className="px-6 py-3">
+                                        <span className="sr-only">Edit</span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr className="bg-white border-b dark:bg-white dark:border-gray-700 ">
+                                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-400">
+                                        Apple MacBook Pro 17&quot;
+                                    </th>
+                                    <td className="px-6 py-4">
+                                        Silver
+                                    </td>
+                                    <td className="px-6 py-4">
+                                        Laptop
+                                    </td>
+                                    <td className="px-6 py-4">
+                                        $2999
+                                    </td>
+                                    <td className="px-6 py-4 text-right">
+                                        <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                    </td>
+                                </tr>
+                                <tr className="bg-white border-b dark:bg-white dark:border-gray-700 ">
+                                    <th scope="row" className="px-6 py-4 font-medium  whitespace-nowrap text-gray-400">
+                                        Microsoft Surface Pro
+                                    </th>
+                                    <td className="px-6 py-4">
+                                        White
+                                    </td>
+                                    <td className="px-6 py-4">
+                                        Laptop PC
+                                    </td>
+                                    <td className="px-6 py-4">
+                                        $1999
+                                    </td>
+                                    <td className="px-6 py-4 text-right">
+                                        <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                    </td>
+                                </tr>
+                                <tr className="bg-white border-b dark:bg-white dark:border-gray-70">
+                                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-400">
+                                        Magic Mouse 2
+                                    </th>
+                                    <td className="px-6 py-4">
+                                        Black
+                                    </td>
+                                    <td className="px-6 py-4">
+                                        Accessories
+                                    </td>
+                                    <td className="px-6 py-4">
+                                        $99
+                                    </td>
+                                    <td className="px-6 py-4 text-right">
+                                        <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
                     </div>
 
                 </Container>
