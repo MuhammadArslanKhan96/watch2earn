@@ -20,8 +20,11 @@ const Signup = () => {
   };
 
   React.useEffect(() => {
-    if (status === "authenticated" && localStorage.getItem("user") !== null) {
-      getUser();
+    if (status === "authenticated") {
+      localStorage.setItem("user", JSON.stringify(data.user));
+      if (localStorage.getItem("user") !== null) {
+        getUser();
+      }
     }
     // eslint-disable-next-line
   }, [status]);

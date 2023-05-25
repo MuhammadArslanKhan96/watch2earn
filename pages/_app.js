@@ -27,13 +27,13 @@ function MyApp({ Component, pageProps }) {
     ) {
       getUser();
     }
-  }, []);
+  }, [router]);
 
 
   const ddb = new dynamoose.aws.ddb.DynamoDB({
     "credentials": {
-      "accessKeyId": "AKIAZT2RUSWSA6BON4GT",
-      "secretAccessKey": "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"
+      "accessKeyId": process.env.NEXT_PUBLIC_AWS_ACCESS_KEY,
+      "secretAccessKey": process.env.NEXT_PUBLIC_AWS_SECRET_KEY
     },
     "region": "us-east-1",
     "Region": "us-east-1",
@@ -41,6 +41,12 @@ function MyApp({ Component, pageProps }) {
 
   dynamoose.aws.ddb.set(ddb)
 
+  const updateVideos = async (data) => {
+    await fetch(`/api/add-videos`, {
+      method: 'POST',
+      body: JSON.stringify(data)
+    })
+  }
 
   const updateUser = async (data) => {
     // console.log(user)
@@ -78,7 +84,8 @@ function MyApp({ Component, pageProps }) {
 
         if (arr.length === data.items.length) {
           setUser((prev) => ({ ...prev, videos: JSON.stringify(arr) }))
-          updateUser({ videos: JSON.stringify(arr) })
+          updateUser({ videos: JSON.stringify(arr) });
+          updateVideos({ videos: JSON.stringify(arr[0].items) });
         }
       })
     }
