@@ -2,55 +2,26 @@ import React, { useContext, useEffect, useState } from 'react'
 import Sidebar from '../components/Sidebar'
 import { Container } from 'reactstrap/lib'
 import { UserContext } from '@/context/UserContext'
+import Image from 'next/image'
 
 
 const Videos = () => {
     const [videos, setVideos] = useState([]);
-    let count = 0;
-    const [file, setFile] = useState(null);
-    const { user } = useContext(UserContext);
-
-    useEffect(() => {
-        if (user && user.channels) {
-            const channels = JSON.parse(user.channels);
-            setSubscribers(channels.items[0].statistics.subscriberCount)
-        }
-        if (user && user.videos) {
-
-            const videos = JSON.parse(user.videos)[0].items;
-            setVideos(videos
-                .sort(function (a, b) {
-                    return Number(b.statistics.viewCount) - Number(a.statistics.viewCount);
-                }))
-        }
-    }, [user])
-    useEffect(() => {
-        randomConsoleLog()
-        // eslint-disable-next-line
-    }, []);
-
-    function randomConsoleLog() {
-        if (count < 2) {
-            const timeToLog = Math.floor(Math.random() * 30000);
-            setTimeout(() => {
-                fetch(`/api/screenshot`).then((res) => res.blob()).then((blob) => {
-                    const file = new File([blob], `image${timeToLog}.png`, {
-                        type: 'image/png'
-                    });
-                    setFile(file)
-                    count++
-                    randomConsoleLog()
-                })
-            }, timeToLog);
-        }
+    async function getvideos() {
+        const videos = await fetch(`/api/get-videos`).then(res => res.json());
+        setVideos(videos);
+        console.log(videos)
     }
 
+    useEffect(() => {
+        getvideos()
+    }, [])
 
     return (
         <>
             <section className='flex'>
                 <Sidebar />
-                <Container className='bg-[#F6F9FC] flex flex-col  p-[24px] '>
+                <Container className='bg-[#F6F9FC] flex flex-col  p-[24px]  '>
                     <div className='flex justify-between p-[24px] gap-x-10'>
                         <div className='text-[22px] text-[#525F7F] font-bold'>
                             Albums
@@ -70,9 +41,12 @@ const Videos = () => {
 
                     <div className='grid grid-cols-4 p-[24px] gap-x-5 gap-y-5'>
 
-                        <table className="w-[60vw] text-sm text-left text-gray-500 dark:text-gray-400">
-                            <thead className="text-xs text-gray-700 uppercase bg-white dark:bg-white dark:text-gray-400">
-                                <tr>
+                        <table className="w-[60vw] text-sm text-left rounded-[8px] text-gray-500 dark:text-gray-400">
+                            <thead className="text-xs text-gray-700 uppercase bg-white  dark:bg-white dark:text-gray-400">
+                                <tr className='border-b-[2px] dark:border-gray-700'>
+                                    <th scope="col" className="px-6 py-3">
+                                        Thumbnail
+                                    </th>
                                     <th scope="col" className="px-6 py-3">
                                         Video Title
                                     </th>
@@ -86,62 +60,47 @@ const Videos = () => {
                                         Likes
                                     </th>
                                     <th scope="col" className="px-6 py-3">
-                                        <span className="sr-only">Edit</span>
+                                        DisLikes
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr className="bg-white border-b dark:bg-white dark:border-gray-700 ">
-                                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-400">
-                                        Apple MacBook Pro 17&quot;
-                                    </th>
-                                    <td className="px-6 py-4">
-                                        Silver
-                                    </td>
-                                    <td className="px-6 py-4">
-                                        Laptop
-                                    </td>
-                                    <td className="px-6 py-4">
-                                        $2999
-                                    </td>
-                                    <td className="px-6 py-4 text-right">
-                                        <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                    </td>
-                                </tr>
-                                <tr className="bg-white border-b dark:bg-white dark:border-gray-700 ">
-                                    <th scope="row" className="px-6 py-4 font-medium  whitespace-nowrap text-gray-400">
-                                        Microsoft Surface Pro
-                                    </th>
-                                    <td className="px-6 py-4">
-                                        White
-                                    </td>
-                                    <td className="px-6 py-4">
-                                        Laptop PC
-                                    </td>
-                                    <td className="px-6 py-4">
-                                        $1999
-                                    </td>
-                                    <td className="px-6 py-4 text-right">
-                                        <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                    </td>
-                                </tr>
-                                <tr className="bg-white border-b dark:bg-white dark:border-gray-70">
-                                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-400">
-                                        Magic Mouse 2
-                                    </th>
-                                    <td className="px-6 py-4">
-                                        Black
-                                    </td>
-                                    <td className="px-6 py-4">
-                                        Accessories
-                                    </td>
-                                    <td className="px-6 py-4">
-                                        $99
-                                    </td>
-                                    <td className="px-6 py-4 text-right">
-                                        <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                    </td>
-                                </tr>
+                                {
+                                    videos.length ? videos.map((vid) => (
+                                        <>
+                                            {JSON.parse(vid.videos).map((video) => (
+                                                <>
+
+                                                    <tr className="bg-white border-b dark:bg-white dark:border-gray-700 ">
+                                                        <th scope="row" className="px-6 py-4  font-medium text-gray-900 whitespace-nowrap dark:text-gray-400">
+
+                                                            <Image src={(video.snippet.thumbnails.high.url)} width={100} height={100} alt='' />
+                                                        </th>
+                                                        <td className="px-6 py-4 ">
+                                                            {video.snippet.title}
+                                                        </td>
+                                                        <td className="px-6 py-4 text-center">
+                                                            {video.statistics.viewCount}
+                                                        </td>
+                                                        <td className="px-6 py-4 text-center">
+                                                            {video.statistics.commentCount}
+                                                        </td>
+                                                        <td className="px-6 py-4 text-center">
+                                                            {video.statistics.likeCount}
+
+                                                        </td>
+                                                        <td className="px-6 py-4 text-center">
+                                                            {video.statistics.dislikeCount}
+
+                                                        </td>
+
+                                                    </tr>
+                                                </>
+                                            ))}
+                                        </>
+                                    )) : null
+                                }
+
                             </tbody>
                         </table>
 

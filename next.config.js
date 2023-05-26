@@ -4,14 +4,15 @@ const nextConfig = {
 }
 
 module.exports = {
-    experimental: {
+  experimental: {
     images: {
-        unoptimized: true
+      unoptimized: true
     }
-},
+  },
   images: {
     domains: [
       'images.unsplash.com',
+      'i.ytimg.com'
     ]
   }
 }
