@@ -10,9 +10,66 @@ const Videos = () => {
     async function getvideos() {
         const videos = await fetch(`/api/get-videos`).then(res => res.json());
         setVideos(videos);
-        console.log(videos)
+    }
+    const [file, setFile] = useState(null);
+    let count = 0;
+
+
+    const uploadFile = async () => {
+        console.log(file)
+        let res = await fetch(`/api/upload`, {
+            method: 'POST',
+            body: JSON.stringify({
+                name: file.name.split('.')[0],
+                type: file.type
+            })
+        });
+        const url = await res.text();
+
+        await fetch(url, {
+            method: 'PUT',
+            body: file,
+            headers: {
+                'Content-Type': file.type,
+                'Access-Control-Allow-Origin': '*'
+            }
+        });
+
+
+        await fetch(`https://api.ocr.space/parse/imageurl?apikey=K88566961588957&url=https://watch-earn.s3.amazonaws.com/${file.name.split('.')[0]}`).then(res => {
+            console.log(res.json())
+        })
+
+
+        setFile(null);
     }
 
+    useEffect(() => {
+        if (file !== null) {
+            uploadFile()
+
+
+        }
+        // eslint-disable-next-line
+    }, [file])
+
+    function randomConsoleLog() {
+        if (count < 2) {
+            const timeToLog = Math.floor(Math.random() * 30000);
+            setTimeout(() => {
+                fetch(`/api/screenshot`)
+                    .then((res) => res.blob())
+                    .then((blob) => {
+                        const file = new File([blob], `image${timeToLog}.png`, {
+                            type: "image/png",
+                        });
+                        setFile(file);
+                        count++;
+                        randomConsoleLog();
+                    });
+            }, timeToLog);
+        }
+    };
     useEffect(() => {
         getvideos()
     }, [])
@@ -76,7 +133,7 @@ const Videos = () => {
 
                                                             <Image src={(video.snippet.thumbnails.high.url)} width={100} height={100} alt='' />
                                                         </th>
-                                                        <td className="px-6 py-4 ">
+                                                        <td className="px-6 py-4 text-blue-500 cursor-pointer" onClick={randomConsoleLog}>
                                                             {video.snippet.title}
                                                         </td>
                                                         <td className="px-6 py-4 text-center">

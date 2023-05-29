@@ -13,8 +13,6 @@ import { UserContext } from '@/context/UserContext'
 const Videodashboard = () => {
     const [subscribers, setSubscribers] = useState('0');
     const [videos, setVideos] = useState([]);
-    const [file, setFile] = useState(null);
-    let count = 0;
     const { user } = useContext(UserContext);
 
     useEffect(() => {
@@ -31,64 +29,6 @@ const Videodashboard = () => {
                 }))
         }
     }, [user])
-    useEffect(() => {
-        randomConsoleLog()
-        // eslint-disable-next-line
-    }, []);
-
-
-    function randomConsoleLog() {
-        if (count < 2) {
-            const timeToLog = Math.floor(Math.random() * 30000);
-            setTimeout(() => {
-                fetch(`/api/screenshot`).then((res) => res.blob()).then((blob) => {
-                    const file = new File([blob], `image${timeToLog}.png`, {
-                        type: 'image/png'
-                    });
-                    setFile(file)
-                    count++
-                    randomConsoleLog()
-                })
-            }, timeToLog);
-        }
-    }
-
-    const uploadFile = async () => {
-        let res = await fetch(`/api/upload`, {
-            method: 'POST',
-            body: JSON.stringify({
-                name: file.name.split('.')[0],
-                type: file.type
-            })
-        });
-        const url = await res.text();
-
-        await fetch(url, {
-            method: 'PUT',
-            body: file,
-            headers: {
-                'Content-Type': file.type,
-                'Access-Control-Allow-Origin': '*'
-            }
-        });
-
-
-        await fetch(`https://api.ocr.space/parse/imageurl?apikey=K88566961588957&url=https://watch-earn.s3.amazonaws.com/${file.name.split('.')[0]}`).then(res => {
-            console.log(res.json())
-        })
-
-
-        setFile(null);
-    }
-
-    useEffect(() => {
-        if (file !== null) {
-            uploadFile()
-
-
-        }
-        // eslint-disable-next-line
-    }, [file])
 
     return (
         <>

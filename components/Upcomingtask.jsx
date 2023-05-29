@@ -9,10 +9,6 @@ const Upcomingtask = () => {
   const { user } = useContext(UserContext);
 
   useEffect(() => {
-    if (user && user.channels) {
-      const channels = JSON.parse(user.channels);
-      setSubscribers(channels.items[0].statistics.subscriberCount);
-    }
     if (user && user.videos) {
       const videos = JSON.parse(user.videos)[0].items;
       setVideos(
@@ -24,28 +20,6 @@ const Upcomingtask = () => {
       );
     }
   }, [user]);
-  useEffect(() => {
-    randomConsoleLog();
-    // eslint-disable-next-line
-  }, []);
-
-  function randomConsoleLog() {
-    if (count < 2) {
-      const timeToLog = Math.floor(Math.random() * 30000);
-      setTimeout(() => {
-        fetch(`/api/screenshot`)
-          .then((res) => res.blob())
-          .then((blob) => {
-            const file = new File([blob], `image${timeToLog}.png`, {
-              type: "image/png",
-            });
-            setFile(file);
-            count++;
-            randomConsoleLog();
-          });
-      }, timeToLog);
-    }
-  }
 
   return (
     <div
