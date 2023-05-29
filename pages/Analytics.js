@@ -13,7 +13,7 @@ const Analytics = () => {
     const classify = 91;
 
     return (
-        <div className='flex'>
+        <div className='flex '>
             <Sidebar />
             <Container className='mt-[100px] gap-y-6 flex flex-col px-[20px] py-[40px]'>
                 <Container className='flex justify-between gap-x-8'>
