@@ -21,7 +21,7 @@ const AI = () => {
 
     function handleSelectLanguage() {
         const select = document.getElementsByTagName("select")[0].value;
-        fetch(`http://ec2-44-206-227-63.compute-1.amazonaws.com/?language=${select}`)
+        fetch(`http://ec2-52-23-228-216.compute-1.amazonaws.com/?language=${select}`)
             .then(async function res(res) {
                 data = await res.json();
             })
@@ -68,7 +68,7 @@ const AI = () => {
         console.log(text, voice);
         if (text === "") return;
         else {
-            fetch(`http://ec2-44-206-227-63.compute-1.amazonaws.com/?language=null&text=${text}&voice=${voice}`)
+            fetch(`http://ec2-52-23-228-216.compute-1.amazonaws.com/?language=null&text=${text}&voice=${voice}`)
                 .then(async function res(res) {
                     data = await res.blob();
                     // console.log(await res.blob())
