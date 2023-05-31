@@ -21,7 +21,7 @@ const AI = () => {
 
     function handleSelectLanguage() {
         const select = document.getElementsByTagName("select")[0].value;
-        fetch(`https://08ba-2400-adc1-401-a200-a19f-f21d-bc0b-370b.ngrok-free.app/?language=${select}`)
+        fetch(`https://08ba-2400-adc1-401-a200-a19f-f21d-bc0b-370b.ngrok-free.app/?language=${select}`,{mode:'no-cors'})
             .then(async function res(res) {
                 data = await res.json();
             })
@@ -68,7 +68,7 @@ const AI = () => {
         console.log(text, voice);
         if (text === "") return;
         else {
-            fetch(`https://08ba-2400-adc1-401-a200-a19f-f21d-bc0b-370b.ngrok-free.app/?language=null&text=${text}&voice=${voice}`)
+            fetch(`https://08ba-2400-adc1-401-a200-a19f-f21d-bc0b-370b.ngrok-free.app/?language=null&text=${text}&voice=${voice}`,{mode:'no-cors'})
                 .then(async function res(res) {
                     data = await res.blob();
                     // console.log(await res.blob())
